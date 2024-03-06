@@ -58,7 +58,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  ${mobile({ fontSize: "24px" })}
+  ${mobile({ fontSize: "15px", marginLeft: "30px" })}
   cursor: pointer;
   a {
     color: inherit; /* Ensure the anchor inherits the color from its parent */
