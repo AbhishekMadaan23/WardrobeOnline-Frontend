@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { popularProducts } from "../data";
 import { Product } from "./Product";
@@ -14,29 +14,22 @@ const Container = styled.div`
 export const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  console.log("propssss", cat, filters, sort);
-  console.log("{{}}}}>>>>>", filteredProducts);
 
   useEffect(() => {
-    console.log("First useEffect is called");
     const getProducts = async () => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `https://wardrobe-online-backend.vercel.app/api/products?category=${cat}`
+            : "https://wardrobe-online-backend.vercel.app/api/products"
         );
-        console.log("responseData", res.data);
         setProducts(res.data);
-      } catch (error) {
-        console.log("getProducts error", error);
-      }
+      } catch (err) {}
     };
     getProducts();
   }, [cat]);
 
   useEffect(() => {
-    console.log("second useEffect called");
     cat &&
       setFilteredProducts(
         products.filter((item) =>
@@ -66,12 +59,10 @@ export const Products = ({ cat, filters, sort }) => {
   return (
     <Container>
       {cat
-        ? filteredProducts.map((item) => {
-            return <Product item={item} key={item.id} />;
-          })
-        : products.slice(0, 8).map((item) => {
-            return <Product item={item} key={item.id} />;
-          })}
+        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        : products
+            .slice(0, 8)
+            .map((item) => <Product item={item} key={item.id} />)}
     </Container>
   );
 };

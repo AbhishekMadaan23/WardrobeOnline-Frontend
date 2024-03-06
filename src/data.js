@@ -1,8 +1,8 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://lp2.hm.com/hmgoepprod?set=width[1920],quality[80],options[limit]&source=url[https://www2.hm.com/content/dam/global_campaigns/season_07/kids/4007a/4007A-3x2-Desktop.jpg]&scale=width[global.width],height[15000],options[global.options]&sink=format[jpg],quality[global.quality]",
-    title: "SUMMER SALE",
+    img: "https://hmgroup.com/wp-content/uploads/2022/01/investors-1024x576.jpg",
+    title: "WINTER SALE",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVAL",
     bg: "fcf1ed",
   },

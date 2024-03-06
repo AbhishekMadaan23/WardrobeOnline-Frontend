@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 30px;
+  padding: 5px;
   background-color: teal;
   color: white;
   display: flex;
   align_items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 `;
 

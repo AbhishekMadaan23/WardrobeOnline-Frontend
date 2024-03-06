@@ -4,7 +4,9 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/userRedux";
+import { resetCart } from "../redux/cartRedux";
 
 const Container = styled.div`
   height: 60px;
@@ -41,6 +43,11 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+
   ${mobile({ width: "50px" })}
 `;
 
@@ -76,6 +83,12 @@ const MenuItem = styled.div`
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user?.currentUser?.username);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(resetCart());
+  };
+  console.log("????????{{{{{", user);
 
   return (
     <Container>
@@ -93,8 +106,29 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          {user ? <MenuItem>{user}</MenuItem> : <MenuItem>SIGN IN</MenuItem>}
+          <MenuItem>
+            {user ? (
+              <button
+                style={{ background: "none", border: "none" }}
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <a href="/register" style={{ textDecoration: "none" }}>
+                REGISTER
+              </a>
+            )}
+          </MenuItem>
+          {user ? (
+            <MenuItem>{user}</MenuItem>
+          ) : (
+            <MenuItem>
+              <a href="/login" style={{ textDecoration: "none" }}>
+                SIGN IN
+              </a>
+            </MenuItem>
+          )}
 
           <Link to="/cart">
             <MenuItem>
